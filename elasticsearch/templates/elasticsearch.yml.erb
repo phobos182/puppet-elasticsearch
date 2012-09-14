@@ -32,7 +32,7 @@ node.data: <%= scope.lookupvar('elasticsearch::params::node_data') %>
 # for customized shard allocation filtering, or allocation awareness. An attribute
 # is a simple key value pair, similar to node.key: value, here is an example:
 #
-node.rack: <%= has_variable?('rack') ? rack : '1' %>
+node.rack: <%= has_variable?('::rack') ? rack : '1' %>
 
 #################################### Index ####################################
 
@@ -48,7 +48,7 @@ index.number_of_replicas: <%= scope.lookupvar('elasticsearch::params::index_numb
 indices.cache.filter.size: <%= scope.lookupvar('elasticsearch::params::indices_cache_filter_size') %>
 
 # Stats API refresh interval
-index.cache.stats.refresh_interval: 5s
+index.cache.stats.refresh_interval: <%= scope.lookupvar('elasticsearch::params::index_cache_stats_refresh_interval') %>
 
 # Term index interval
 index.term_index_interval: <%= scope.lookupvar('elasticsearch::params::index_term_index_interval') %>
@@ -75,7 +75,7 @@ path.conf: /etc/elasticsearch
 
 # Path to directory where to store index data allocated for this node.
 #
-path.data: <%= has_variable?('data_volumes') ? data_volumes.split(',').join('/elasticsearch,') + '/elasticsearch' : '/tmp/elasticsearch' %>
+path.data: <%= has_variable?('::data_volumes') ? data_volumes.split(',').join('/elasticsearch,') + '/elasticsearch' : '/tmp/elasticsearch' %>
 
 # Path to temporary files:
 #

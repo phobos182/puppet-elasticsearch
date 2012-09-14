@@ -16,6 +16,7 @@ class elasticsearch::params {
   $index_number_of_shards                = hiera('index_number_of_shards', '5')
   $index_number_of_replicas              = hiera('index_number_of_replicas', '1')
   $indices_cache_filter_size             = hiera('indices_cache_filter_size', '20%')
+  $index_cache_stats_refresh_interval    = hiera('index_cache_stats_refresh_interval', '5s')
   $index_mapper_dynamic                  = hiera('index_mapper_dynamic', 'true')
   $index_translog_flush_threshold_ops    = hiera('index_translog_flush_threshold_ops', '5000')
   $index_merge_policy_floor_segment      = hiera('index_merge_policy_floor_segment', '2mb')
