@@ -23,7 +23,7 @@ MAX_LOCKED_MEMORY=unlimited
 LOG_DIR=<%= scope.lookupvar('elasticsearch::params::es_log_dir') %>
 
 # ElasticSearch data directory
-DATA_DIR=<%= has_variable?('::data_volumes') ? data_volumes.split(',').join('/elasticsearch,') + '/elasticsearch' : '/tmp/elasticsearch' %>
+DATA_DIR=<%= has_variable?('data_volumes') ? data_volumes.split(',').join('/elasticsearch,') + '/elasticsearch' : '/tmp/elasticsearch' %>
 
 # ElasticSearch work directory
 WORK_DIR=<%= scope.lookupvar('elasticsearch::params::es_work_dir') %>

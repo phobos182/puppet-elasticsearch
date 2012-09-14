@@ -15,7 +15,7 @@ cluster.name: <%= scope.lookupvar('elasticsearch::params::cluster_name') %>
 # from configuring them manually. You can tie this node to a specific name:
 #
 # node.name: "Franz Kafka"
-node.name: <%= scope.lookupvar('::hostname') %>
+node.name: <%= has_variable?('hostname') ? hostname : 'undefined' %>
 
 # Every node can be configured to allow or deny being eligible as the master,
 # and to allow or deny to store the data.
@@ -32,7 +32,7 @@ node.data: <%= scope.lookupvar('elasticsearch::params::node_data') %>
 # for customized shard allocation filtering, or allocation awareness. An attribute
 # is a simple key value pair, similar to node.key: value, here is an example:
 #
-node.rack: <%= has_variable?('::rack') ? rack : '1' %>
+node.rack: <%= has_variable?('rack') ? rack : '1' %>
 
 #################################### Index ####################################
 
@@ -75,7 +75,7 @@ path.conf: <%= scope.lookupvar('elasticsearch::params::path_conf') %>
 
 # Path to directory where to store index data allocated for this node.
 #
-path.data: <%= has_variable?('::data_volumes') ? data_volumes.split(',').join('/elasticsearch,') + '/elasticsearch' : '/tmp/elasticsearch' %>
+path.data: <%= has_variable?('data_volumes') ? data_volumes.split(',').join('/elasticsearch,') + '/elasticsearch' : '/tmp/elasticsearch' %>
 
 # Path to temporary files:
 #
