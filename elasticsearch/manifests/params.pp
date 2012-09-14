@@ -37,17 +37,18 @@ class elasticsearch::params {
   $es_heap_newsize   = hiera('es_heap_newsize', '128m')
   $es_max_open_files = hiera('es_max_open_files', '65535')
   $es_java_opts      = hiera_array('es_java_opts', [''])
-  $log_dir           = hiera('log_dir', '/var/log/elasticsearch')
-  $work_dir          = hiera('work_dir', '/tmp/elasticsearch')
+  $es_log_dir        = hiera('es_log_dir', '/var/log/elasticsearch')
+  $es_work_dir       = hiera('es_work_dir', '/tmp/elasticsearch')
 
   #_ MEMORY _#
   $bootstrap_mlockall = hiera('bootstrap_mlockall', 'true')
 
   #_ NETWORK _#
-  $transport_tcp_port     = hiera('transport_tcp_port', '9300')
-  $transport_tcp_compress = hiera('transport_tcp_compress', 'false')
-  $http_port              = hiera('http_port', '9200-9300')
-  $http_enabled           = hiera('http_enabled', 'true')
+  $transport_port          = hiera('transport_port', '9300')
+  $transport_tcp_compress  = hiera('transport_tcp_compress', 'false')
+  $http_port               = hiera('http_port', '9200-9300')
+  $http_max_content_length = hiera('http_max_content_length', '100mb')
+  $http_enabled            = hiera('http_enabled', 'true')
 
   #_ GATEWAY _#
   $gateway_type                = hiera('gateway_type', 'local')

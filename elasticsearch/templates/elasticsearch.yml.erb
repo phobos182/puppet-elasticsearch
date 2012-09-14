@@ -71,7 +71,7 @@ index.merge.policy.segments_per_tier: <%= scope.lookupvar('elasticsearch::params
 
 # Path to directory containing configuration (this file and logging.yml):
 #
-path.conf: /etc/elasticsearch
+path.conf: <%= scope.lookupvar('elasticsearch::params::path_conf') %>
 
 # Path to directory where to store index data allocated for this node.
 #
@@ -79,15 +79,15 @@ path.data: <%= has_variable?('::data_volumes') ? data_volumes.split(',').join('/
 
 # Path to temporary files:
 #
-path.work: /tmp/elasticsearch
+path.work: <%= scope.lookupvar('elasticsearch::params::es_work_dir') %>
 
 # Path to log files:
 #
-path.logs: /var/log/elasticsearch
+path.logs: <%= scope.lookupvar('elasticsearch::params::es_log_dir') %>
 
 # Path to where plugins are installed:
 #
-path.plugins: /usr/share/elasticsearch/plugins
+path.plugins: <%= scope.lookupvar('elasticsearch::params::path_plugins') %>
 
 ################################### Memory ####################################
 
@@ -128,12 +128,12 @@ bootstrap.mlockall: <%= scope.lookupvar('elasticsearch::params::bootstrap_mlocka
 
 # Set a custom port for the node to node communication (9300 by default):
 #
-# transport.port: 9300
+transport.port: <%= scope.lookupvar('elasticsearch::params::transport_port') %>
 
 # Enable compression for all communication between nodes (disabled by default):
 #
 # transport.tcp.compress: true
-transport.tcp.compress: false
+transport.tcp.compress: <%= scope.lookupvar('elasticsearch::params::transport_tcp_compress') %>
 
 # Set a custom port to listen for HTTP traffic:
 #
@@ -141,11 +141,11 @@ http.port: <%= scope.lookupvar('elasticsearch::params::http_port') %>
 
 # Set a custom allowed content length:
 #
-http.max_content_length: 100mb
+http.max_content_length: <%= scope.lookupvar('elasticsearch::params::http_max_content_length') %>
 
 # Disable HTTP completely:
 #
-# http.enabled: false
+http.enabled: <%= scope.lookupvar('elasticsearch::params::http_enabled') %>
 
 
 ################################### Mappings ###################################

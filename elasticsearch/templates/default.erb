@@ -20,13 +20,13 @@ MAX_OPEN_FILES=<%= scope.lookupvar('elasticsearch::params::es_max_open_files') %
 MAX_LOCKED_MEMORY=unlimited
 
 # ElasticSearch log directory
-LOG_DIR=<%= scope.lookupvar('elasticsearch::params::log_dir') %>
+LOG_DIR=<%= scope.lookupvar('elasticsearch::params::es_log_dir') %>
 
 # ElasticSearch data directory
 DATA_DIR=<%= has_variable?('data_volumes') ? data_volumes.split(',').join('/elasticsearch,') + '/elasticsearch' : '/tmp/elasticsearch' %>
 
 # ElasticSearch work directory
-WORK_DIR=<%= scope.lookupvar('elasticsearch::params::work_dir') %>
+WORK_DIR=<%= scope.lookupvar('elasticsearch::params::es_work_dir') %>
 
 # ElasticSearch configuration directory
 CONF_DIR=<%= scope.lookupvar('elasticsearch::params::path_conf') %>
